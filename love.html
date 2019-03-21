@@ -1,0 +1,84 @@
+<!doctype html>
+<html>
+    <head>        
+        <meta charset='utf-8'>
+        <meta name='keywords' content=','>
+        <meta name='description' content=''>
+        <title>一个小demo</title>
+        
+        <style>
+            *{
+                margin:0;
+            }
+            html{
+                height:100%;
+            }
+            body{
+                display:flex; /*弹性盒模型 垂直居中*/ 
+                height:100%;
+                background:skyblue;
+                animation:change 4s linear infinite;
+            }
+            #wrap{
+                margin:auto; /*左右居中*/
+                width:400px;
+                height:200px;
+            }
+            #wrap .love{
+                position:relative;
+                width:200px;
+                height:180px;
+            }
+            .love::before,/*行内*/
+            .love::after{
+                display:block; /*展示为块级元素*/
+                content:'';
+                width:100px;
+                height:150px;        
+                background-color:black;
+                border-radius:100px 100px 0 0;
+            }
+            .love::before{
+                /*css 形变 旋转*/
+                transform:rotate(-50deg) translateY(27px) translateX(11px);
+            }
+            .love::after{    
+                /*css 形变 旋转*/
+                transform:rotate(50deg) translateY(-149px) translateX(-59px);        
+            }            
+            .love:nth-of-type(2){            
+                top:-178px;
+                left:92px;            
+            }
+            .love:nth-of-type(2):before,.love:nth-of-type(2):after{
+                background-color:#999;
+            }
+            /*选中其中一个*/
+            .love:nth-of-type(1){
+                z-index:99;
+                left:300px;          
+                animation:move 4s linear infinite;
+            }
+            @keyframes move{
+                0%{left:300px}
+                50%{left:100px}
+                100%{left:-100px}
+            }            
+            @keyframes change{
+                0%{background-color:skyblue;}
+                50%{background-color:black;}
+                100%{background-color:skyblue;}
+            }
+            
+        </style>
+        
+    </head>
+<body>
+    <div id='wrap'>
+        <div class='love'></div>
+        <div class='love'></div>
+    </div>
+    
+</body>
+</html>
+
